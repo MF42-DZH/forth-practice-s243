@@ -14,11 +14,13 @@ variable mult
 variable incr
 
 \ init - Initialise all the variables using current time
+\ note that the multiplier must be odd otherwise infinite sequences of even
+\ numbers can occur
 : init ( -- ) 
-  time&date + + + + + ctrm !                  \ Init term
-  time&date * * + + + modl !                  \ Init modulus
-  time&date + * + - + modl 1 - mod 1 + mult ! \ Init multiplier
-  time&date * + - + - modl mod incr !         \ Init increment
+  time&date + + + + + ctrm !                       \ Init term
+  time&date * * + + + modl !                       \ Init modulus
+  time&date + * + - + modl 1 - mod 1 + 1 or mult ! \ Init multiplier
+  time&date * + - + - modl mod incr !              \ Init increment
 ;
 
 \ sinit - Initialise all the variables using a seed
@@ -31,7 +33,7 @@ variable incr
 ;
 
 \ randomise - Generate a random integer between the min & max integer bounds
-: randomise ( -- n ) mult @ ctrm @ * incr @ + modl @ mod dup ctrm ! ;
+: randomise ( -- n ) mult @ ctrm @ * incr @ + modl @ mod dup 1 xor ctrm ! ;
 
 \ nextint - Get the next int within the interval 0 <= n < k; k > 1
 : nextint ( k -- n ) randomise swap mod ;

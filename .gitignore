@@ -1,0 +1,10 @@
+# all used non-forth files
+*.hs
+*.txt
+*.exe
+*.o
+*.elf
+*.c
+*.h
+*.cpp
+msws

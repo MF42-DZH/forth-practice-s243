@@ -1,5 +1,5 @@
 \ Imports random functions
-s" prng.fs" included
+s" prng-msws.fs" included
 
 \ move delaration
 0 constant rock
