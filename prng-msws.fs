@@ -6,6 +6,7 @@ variable xterm
 variable wterm
 variable seed
 
+\ Square of an int
 : sqre ( n -- n*n ) dup * ;
 
 \ Initialise the PRNG
@@ -13,6 +14,13 @@ variable seed
   0 xterm !
   0 wterm !
   time&date * * + + + sqre seed !
+;
+
+\ Initialise the PRNG with a seed
+: sinit ( n -- )
+  0 xterm !
+  0 wterm !
+  seed !
 ;
 
 \ Generate a new x term
